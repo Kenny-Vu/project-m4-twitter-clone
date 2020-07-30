@@ -1,19 +1,17 @@
 import React from "react";
 import styled from "styled-components";
 
-import { BrowserRouter as Router, Link } from "react-router-dom";
+import { Link } from "react-router-dom";
 import { GiDuck } from "react-icons/gi";
 
 const Sidebar = () => {
   return (
     <Sidenav>
       <GiDuck />
-      <Router>
-        <Link to="#">Home</Link>
-        <Link to="#">Profile</Link>
-        <Link to="#">Notifications</Link>
-        <Link to="#">Bookmarks</Link>
-      </Router>
+      <Link to="/">Home</Link>
+      <Link to="/profile">Profile</Link>
+      <Link to="/notifications">Notifications</Link>
+      <Link to="/bookmarks">Bookmarks</Link>
     </Sidenav>
   );
 };
@@ -26,13 +24,14 @@ const Sidenav = styled.div`
   left: 0;
   background-color: #7fdbda;
   color: #fff;
-  font-size: 1.25rem;
+  font-size: 4rem;
   padding: 0.5rem;
   a {
     display: block;
     text-decoration: none;
     margin: 0.5rem;
     color: #fff;
+    font-size: 1.25rem;
   }
 `;
 
