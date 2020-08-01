@@ -2,8 +2,14 @@ import React from "react";
 import styled from "styled-components";
 
 import { Link } from "react-router-dom";
-import { FaCat, FaHome } from "react-icons/fa";
-import { FiUser, FiBookmark, FiBell } from "react-icons/fi";
+
+import {
+  GiDuck,
+  GiBarn,
+  GiBigEgg,
+  GiWoodenFence,
+  GiWhistle,
+} from "react-icons/gi";
 import { COLORS } from "../constants";
 
 const { primary, secondary } = COLORS;
@@ -11,37 +17,34 @@ const { primary, secondary } = COLORS;
 const Sidebar = () => {
   return (
     <Sidenav>
-      <FaCat />
+      <GiDuck />
       <Link to="/">
-        <FaHome />
+        <GiBarn />
         Home
       </Link>
       <Link to="/:profileId">
-        <FiUser />
+        <GiBigEgg />
         Profile
       </Link>
       <Link to="/notifications">
-        <FiBell />
+        <GiWhistle />
         Notifications
       </Link>
       <Link to="/bookmarks">
-        <FiBookmark />
+        <GiWoodenFence />
         Bookmarks
       </Link>
-      <button>Quack!</button>
+      <TweetButton>Quack!</TweetButton>
     </Sidenav>
   );
 };
 
 const Sidenav = styled.div`
+  flex: 0 0 350px;
   height: 100%;
   width: 350px;
-  position: absolute;
-  top: 0;
-  left: 0;
   color: #fff;
   padding: 0.5rem;
-  overflow-x: hidden;
   box-shadow: 0 0 2px grey;
   > svg {
     color: ${primary};
@@ -72,18 +75,18 @@ const Sidenav = styled.div`
   a svg {
     margin-right: 1.75rem;
   }
-  button {
-    display: block;
-    margin: 4rem auto;
-    border: none;
-    padding: 0.5rem;
-    width: 120px;
-    height: 70px;
-    font-size: 1.25rem;
-    color: #fff;
-    background-color: ${primary};
-    border-radius: 8px;
-  }
+`;
+const TweetButton = styled.button`
+  display: block;
+  margin: 4rem auto;
+  border: none;
+  padding: 0.5rem;
+  width: 120px;
+  height: 70px;
+  font-size: 1.25rem;
+  color: #fff;
+  background-color: ${primary};
+  border-radius: 18px;
 `;
 
 export default Sidebar;

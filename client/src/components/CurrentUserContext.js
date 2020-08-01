@@ -5,7 +5,6 @@ export const CurrentUserContext = React.createContext(null);
 export const CurrentUserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = React.useState(null);
   const [status, setStatus] = React.useState("loading");
-  let test = "quack!";
   // Fetch the user data from the API (/me/profile)
   // When the data is received, update currentUser.
   // Also, set `status` to `idle`
@@ -14,13 +13,13 @@ export const CurrentUserProvider = ({ children }) => {
       .then((response) => response.json())
       .then((data) => {
         setCurrentUser(data.profile);
-        currentUser ? setStatus("idle") : setStatus("loading");
+        data.profile ? setStatus("idle") : setStatus("loading");
+        console.log(data);
       });
-    return setCurrentUser(currentUser);
-  }, [currentUser]);
+  }, []);
 
   return (
-    <CurrentUserContext.Provider value={{ currentUser, status, test }}>
+    <CurrentUserContext.Provider value={{ currentUser, status }}>
       {children}
     </CurrentUserContext.Provider>
   );

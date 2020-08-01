@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 import Sidebar from "./components/Sidebar";
 import Profile from "./components/Profile";
-import Home from "./components/Home";
+import HomeFeed from "./components/HomeFeed";
 import Notifications from "./components/Notifications";
 import Bookrmarks from "./components/Bookmarks";
 
@@ -14,26 +14,27 @@ import GlobalStyle from "./GlobalStyles";
 import { CurrentUserContext } from "./components/CurrentUserContext";
 
 function App() {
-  const { currentUser, status, test } = React.useContext(CurrentUserContext);
-
-  console.log(test);
+  const { currentUser, status } = React.useContext(CurrentUserContext);
   return (
     <>
       <Router>
         <GlobalStyle />
-        <Sidebar />
+
         <Wrapper>
-          {status === "idle" ? (
-            <Switch>
-              <Route exact path="/" component={Home} />
-              <Route path="/notifications" component={Notifications} />
-              <Route path="/bookmarks" component={Bookrmarks} />
-              <Route path="/tweet/tweetId" />
-              <Route path="/:profileId" component={Profile} />
-            </Switch>
-          ) : (
-            status
-          )}
+          <Sidebar />
+          <Main>
+            {status === "idle" ? (
+              <Switch>
+                <Route exact path="/" component={HomeFeed} />
+                <Route path="/notifications" component={Notifications} />
+                <Route path="/bookmarks" component={Bookrmarks} />
+                <Route path="/tweet/tweetId" />
+                <Route path="/:profileId" component={Profile} />
+              </Switch>
+            ) : (
+              <Loading>{status}</Loading>
+            )}
+          </Main>
         </Wrapper>
       </Router>
     </>
@@ -42,7 +43,10 @@ function App() {
 
 const Wrapper = styled.div`
   display: flex;
-  justify-content: center;
 `;
+const Main = styled.div`
+  flex: 1 0 auto;
+`;
+const Loading = styled.div``;
 
 export default App;
