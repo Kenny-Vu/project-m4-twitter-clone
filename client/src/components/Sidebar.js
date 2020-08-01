@@ -44,7 +44,7 @@ const Sidenav = styled.div`
   overflow-x: hidden;
   box-shadow: 0 0 2px grey;
   > svg {
-    color: black;
+    color: ${primary};
     display: block;
     margin: 2rem auto;
     font-size: 5rem;
