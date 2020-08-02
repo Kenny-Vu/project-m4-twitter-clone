@@ -4,7 +4,7 @@ import "./App.css";
 import styled from "styled-components";
 
 import Sidebar from "./components/Sidebar";
-import Profile from "./components/Profile";
+import Profile from "./components/Profile/Profile";
 import HomeFeed from "./components/HomeFeed";
 import Notifications from "./components/Notifications";
 import Bookrmarks from "./components/Bookmarks";
@@ -19,9 +19,8 @@ function App() {
     <>
       <Router>
         <GlobalStyle />
-
         <Wrapper>
-          <Sidebar />
+          {status === "idle" && <Sidebar />}
           <Main>
             {status === "idle" ? (
               <Switch>

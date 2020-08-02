@@ -1,7 +1,7 @@
 const users = {
   diplomog: {
     handle: "diplomog",
-    displayName: "Eve, Young Activist",
+    displayName: "Eve, Environmental Activist",
     avatarSrc: "/assets/birb-avatar.jpg",
     bannerSrc: "/assets/diplomog-banner.jpeg",
     location: "Whitehall",
@@ -16,7 +16,7 @@ const users = {
     handle: "treasurymog",
     displayName: "Pichin, Educated Procrastinator",
     avatarSrc: "/assets/pichin-avatar.jpg",
-    bannerSrc: "/assets/treasurymog-banner.jpeg",
+    bannerSrc: "/assets/pichin-banner.jpg",
     location: "Whitehall, London",
     url: undefined,
     joined: "2016-10-12T12:00",
@@ -80,7 +80,7 @@ const tweets = {
     likedBy: [],
     retweetedBy: ["treasurymog"],
     status:
-      "If you're concerned and want to help the environment, consider donating on my Patreon!",
+      "If you're concerned and want to help the environment, consider donating to my Patreon!",
     media: [],
   },
 
@@ -101,7 +101,7 @@ const tweets = {
     sortedTimestamp: "2020-01-12T04:31:00+00:00",
     likedBy: [],
     retweetedBy: [],
-    status: `Found an injured butterfly. Anyone wanna give me a hand?`,
+    status: `Found an injured butterfly. Anyone wanna give me a helping foot?`,
     media: [
       {
         type: "img",
