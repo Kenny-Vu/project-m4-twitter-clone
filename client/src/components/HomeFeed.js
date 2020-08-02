@@ -4,6 +4,7 @@ import styled from "styled-components";
 import { CurrentUserContext } from "./CurrentUserContext";
 import Feed from "./Feed";
 import { COLORS } from "../constants";
+import Load from "./Load";
 
 const { primary } = COLORS;
 
@@ -29,11 +30,13 @@ const HomeFeed = () => {
     <Wrapper>
       <h1>Home</h1>
       <UserPost>
-        <AvatarImg src={currentUser.avatarSrc} alt={currentUser.handle} />
-        <textarea placeholder="What's happening?"></textarea>
+        <Divider>
+          <AvatarImg src={currentUser.avatarSrc} alt={currentUser.handle} />
+          <textarea placeholder="What's happening?"></textarea>
+        </Divider>
         <button>Quack!</button>
       </UserPost>
-      {tweetFeed ? <Feed tweetFeed={tweetFeed} /> : <div>Loading...</div>}
+      {tweetFeed ? <Feed tweetFeed={tweetFeed} /> : <Load />}
     </Wrapper>
   );
 };
@@ -60,11 +63,15 @@ const UserPost = styled.div`
   height: 400px;
   border-bottom: thin grey solid;
   textarea {
-    height: 100px;
+    height: 300px;
     width: 100%;
     resize: none;
     font-size: 1.5rem;
     padding: 0.5rem;
+    border: none;
+  }
+  textarea:focus {
+    outline: none;
   }
   button {
     align-self: flex-end;
@@ -79,6 +86,11 @@ const UserPost = styled.div`
     border-radius: 18px;
   }
 `;
+const Divider = styled.div`
+  display: flex;
+  margin-right: 0.5rem;
+`;
+
 export const AvatarImg = styled.img`
   width: 150px;
   height: 150px;

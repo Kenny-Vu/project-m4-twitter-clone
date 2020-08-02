@@ -2,13 +2,14 @@ import React from "react";
 import dateFormat from "dateformat";
 import styled from "styled-components";
 
+//IMPORTED COMPONENTS
 import TweetActions from "./TweetActions";
 
 //renders all tweets on the home page
 const Feed = ({ tweetFeed }) => {
   return tweetFeed.map((tweet) => {
     return (
-      <Tweet>
+      <Tweet key={tweet.id}>
         <Avatar src={tweet.author.avatarSrc} />
         <TweetInfo>
           <span>{tweet.author.displayName}</span>

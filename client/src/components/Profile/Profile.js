@@ -3,7 +3,11 @@ import { useParams } from "react-router-dom";
 
 import styled from "styled-components";
 import { COLORS } from "../../constants";
+
+//IMPORTED COMPONENTS
+import Load from "../Load";
 import CurrentUserFeed from "./CurrentUserFeed";
+import UserInfo from "./UserInfo";
 
 const { primary } = COLORS;
 
@@ -36,21 +40,21 @@ const Profile = () => {
     <Wrapper>
       <div>
         <Banner src={userProfile.bannerSrc} />
-        <ProfilePics>
+        <AvatarWrapper>
           <AvatarImg src={userProfile.avatarSrc} alt={userProfile.handle} />
           {userProfile.isBeingFollowedByYou ? (
             <Button>Following</Button>
           ) : (
             <Button>Follow</Button>
           )}
-        </ProfilePics>
+        </AvatarWrapper>
+        <UserInfo userProfile={userProfile} />
       </div>
-      <div>{userProfile.displayName}</div>
       {/* Passign the userFeed state as prop only once it isn't null */}
-      {userFeed ? <CurrentUserFeed userFeed={userFeed} /> : <div>Loading</div>}
+      {userFeed ? <CurrentUserFeed userFeed={userFeed} /> : <Load />}
     </Wrapper>
   ) : (
-    <div>nope</div>
+    <Load />
   );
 };
 
@@ -64,7 +68,7 @@ border-left: solid #d3d3d3;
 padding: 1rem;
 `;
 
-const ProfilePics = styled.div`
+const AvatarWrapper = styled.div`
   position: relative;
   top: -50px;
   display: flex;
@@ -98,4 +102,5 @@ const Button = styled.button`
   border-radius: 18px;
   cursor: pointer;
 `;
+
 export default Profile;

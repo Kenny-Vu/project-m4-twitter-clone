@@ -1,9 +1,9 @@
 const users = {
   diplomog: {
     handle: "diplomog",
-    displayName: "Eve, Environmental Activist",
+    displayName: "Eve",
     avatarSrc: "/assets/birb-avatar.jpg",
-    bannerSrc: "/assets/diplomog-banner.jpeg",
+    bannerSrc: "/assets/eve-banner.jpg",
     location: "Whitehall",
     url: "http://fco.gov.uk",
     joined: "2016-02-02T12:00",
@@ -14,7 +14,7 @@ const users = {
   },
   treasurymog: {
     handle: "treasurymog",
-    displayName: "Pichin, Educated Procrastinator",
+    displayName: "Pichin",
     avatarSrc: "/assets/pichin-avatar.jpg",
     bannerSrc: "/assets/pichin-banner.jpg",
     location: "Whitehall, London",
@@ -30,8 +30,7 @@ const users = {
     handle: "giantcat9",
     displayName: "Sir Ibouna the Fifth",
     avatarSrc: "/assets/ibouna-avatar.jpg",
-    bannerSrc:
-      "https://pbs.twimg.com/profile_banners/1168513974763171840/1578494728/1500x500",
+    bannerSrc: "/assets/ibouna-banner.jpg",
     location: undefined,
     url: undefined,
     joined: "2019-09-01T18:00",

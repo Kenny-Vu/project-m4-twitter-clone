@@ -7,7 +7,7 @@ import { Tweet, TweetInfo, Avatar, Status, Media } from "../Feed";
 const CurrentUserFeed = ({ userFeed }) => {
   return userFeed.map((tweet) => {
     return (
-      <Tweet>
+      <Tweet key={tweet.id}>
         <Avatar src={tweet.author.avatarSrc} />
         <TweetInfo>
           <span>{tweet.author.displayName}</span>

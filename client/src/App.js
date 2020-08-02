@@ -12,6 +12,7 @@ import Bookrmarks from "./components/Bookmarks";
 import GlobalStyle from "./GlobalStyles";
 
 import { CurrentUserContext } from "./components/CurrentUserContext";
+import Load from "./components/Load";
 
 function App() {
   const { currentUser, status } = React.useContext(CurrentUserContext);
@@ -31,7 +32,7 @@ function App() {
                 <Route path="/:profileId" component={Profile} />
               </Switch>
             ) : (
-              <Loading>{status}</Loading>
+              <Load />
             )}
           </Main>
         </Wrapper>
@@ -46,6 +47,5 @@ const Wrapper = styled.div`
 const Main = styled.div`
   flex: 1 0 auto;
 `;
-const Loading = styled.div``;
 
 export default App;
