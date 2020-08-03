@@ -7,7 +7,8 @@ import Sidebar from "./components/Sidebar";
 import Profile from "./components/Profile/Profile";
 import HomeFeed from "./components/HomeFeed";
 import Notifications from "./components/Notifications";
-import Bookrmarks from "./components/Bookmarks";
+import Bookmarks from "./components/Bookmarks";
+import BigTweet from "./components/BigTweet";
 
 import GlobalStyle from "./GlobalStyles";
 
@@ -27,8 +28,8 @@ function App() {
               <Switch>
                 <Route exact path="/" component={HomeFeed} />
                 <Route path="/notifications" component={Notifications} />
-                <Route path="/bookmarks" component={Bookrmarks} />
-                <Route path="/tweet/tweetId" />
+                <Route path="/bookmarks" component={Bookmarks} />
+                <Route path="/tweet/:tweetId" component={BigTweet} />
                 <Route path="/:profileId" component={Profile} />
               </Switch>
             ) : (

@@ -21,7 +21,6 @@ const UserInfo = ({ userProfile }) => {
     numFollowing,
     numLikes,
   } = userProfile;
-  userProfile && console.log(userProfile);
   return (
     <Wrapper>
       <MainInfo>

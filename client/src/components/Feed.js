@@ -1,18 +1,30 @@
 import React from "react";
 import dateFormat from "dateformat";
 import styled from "styled-components";
+import { useHistory } from "react-router-dom";
 
 //IMPORTED COMPONENTS
+import { CurrentUserContext } from "./CurrentUserContext";
 import TweetActions from "./TweetActions";
 
 //renders all tweets on the home page
 const Feed = ({ tweetFeed }) => {
+  const history = useHistory();
+
+  //function to send user to specific tweet page
+  const handleGoToTweet = (tweetId) => {
+    history.push(`/tweet/${tweetId}`);
+    history.goForward();
+  };
+
   return tweetFeed.map((tweet) => {
     return (
-      <Tweet key={tweet.id}>
+      <Tweet key={tweet.id} onClick={() => handleGoToTweet(tweet.id)}>
         <Avatar src={tweet.author.avatarSrc} />
         <TweetInfo>
-          <span>{tweet.author.displayName}</span>
+          <span>
+            <a href={`/${tweet.author.handle}`}>{tweet.author.displayName}</a>
+          </span>
           <span>@{tweet.author.handle}</span>
           <span>{dateFormat(tweet.timestamp, "mmm dd")}</span>
         </TweetInfo>
@@ -30,6 +42,9 @@ export const Tweet = styled.div`
   display: flex;
   flex-direction: column;
   border-bottom: thin solid #d3d3d3;
+  &&:active {
+    border: blue solid;
+  }
 `;
 export const Avatar = styled.img`
   width: 120px;
@@ -46,6 +61,10 @@ export const TweetInfo = styled.div`
   span:nth-child(3) {
     opacity: 0.8;
     margin-right: 0.25rem;
+  }
+  span a {
+    text-decoration: none;
+    color: black;
   }
 `;
 export const Status = styled.span`
