@@ -1,10 +1,9 @@
 import React from "react";
 import dateFormat from "dateformat";
 import styled from "styled-components";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 //IMPORTED COMPONENTS
-import { CurrentUserContext } from "./CurrentUserContext";
 import TweetActions from "./TweetActions";
 
 //renders all tweets on the home page
@@ -19,39 +18,62 @@ const Feed = ({ tweetFeed }) => {
 
   return tweetFeed.map((tweet) => {
     return (
-      <Tweet key={tweet.id} onClick={() => handleGoToTweet(tweet.id)}>
-        <Avatar src={tweet.author.avatarSrc} />
-        <TweetInfo>
-          <span>
-            <a href={`/${tweet.author.handle}`}>{tweet.author.displayName}</a>
-          </span>
-          <span>@{tweet.author.handle}</span>
-          <span>{dateFormat(tweet.timestamp, "mmm dd")}</span>
-        </TweetInfo>
-        <Status>{tweet.status}</Status>
-        {tweet.media[0] && <Media src={tweet.media[0].url} />}
-        <TweetActions />
-      </Tweet>
+      <>
+        <Tweet key={tweet.id}>
+          <Clickable
+            aria-label="view-tweet"
+            tabIndex="0"
+            onClick={() => handleGoToTweet(tweet.id)}
+            onKeyPress={(e) => e.key === "Enter" && handleGoToTweet(tweet.id)}
+          >
+            <Avatar src={tweet.author.avatarSrc} />
+            <TweetInfo>
+              <span>
+                <Link
+                  onClick={(event) => {
+                    event.stopPropagation();
+                  }}
+                  to={`/${tweet.author.handle}`}
+                >
+                  {tweet.author.displayName}
+                </Link>
+              </span>
+              <span>@{tweet.author.handle}</span>
+              <span>{dateFormat(tweet.timestamp, "mmm dd")}</span>
+            </TweetInfo>
+            <Status>{tweet.status}</Status>
+          </Clickable>
+          {tweet.media[0] && <Media src={tweet.media[0].url} />}
+          <TweetActions
+            tweetId={tweet.id}
+            isLiked={tweet.isLiked}
+            numLikes={tweet.numLikes}
+          />
+        </Tweet>
+      </>
     );
   });
 };
 
 export const Tweet = styled.div`
   margin: 2rem 0;
-  padding-bottom: 1rem;
   display: flex;
   flex-direction: column;
-  border-bottom: thin solid #d3d3d3;
-  &&:active {
-    border: blue solid;
-  }
 `;
 export const Avatar = styled.img`
   width: 120px;
   height: 120px;
   border-radius: 50%;
 `;
+export const Clickable = styled.div`
+  &&:focus {
+    border: blue solid;
+  }
+  z-index: 1;
+`;
+
 export const TweetInfo = styled.div`
+  z-index: 2;
   span:first-child {
     font-size: 1.25rem;
     font-weight: bold;
