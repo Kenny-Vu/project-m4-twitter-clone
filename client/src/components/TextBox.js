@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 
 //IMPORTED COMPONENTS
-import { CurrentUserContext, CurrentUserProvider } from "./CurrentUserContext";
+import { CurrentUserContext } from "./CurrentUserContext";
 
 const TextBox = () => {
   const {
@@ -17,7 +17,6 @@ const TextBox = () => {
   const handleTyping = (event) => {
     setTextValue(event.target.value);
     setNumLettersLeft(280 - event.target.value.length);
-    console.log(numLettersLeft);
   };
 
   //Function to set color of text

@@ -5,9 +5,10 @@ export const CurrentUserContext = React.createContext(null);
 export const CurrentUserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = React.useState(null);
   const [status, setStatus] = React.useState("loading");
+  const [tweetFeed, setTweetFeed] = React.useState(null);
 
   //States used by Submit and Textbox files
-  const [textValue, setTextValue] = React.useState(null);
+  const [textValue, setTextValue] = React.useState("");
   const [numLettersLeft, setNumLettersLeft] = React.useState(280);
 
   // Fetch the user data from the API (/me/profile)
@@ -31,6 +32,8 @@ export const CurrentUserProvider = ({ children }) => {
         setTextValue,
         numLettersLeft,
         setNumLettersLeft,
+        tweetFeed,
+        setTweetFeed,
       }}
     >
       {children}

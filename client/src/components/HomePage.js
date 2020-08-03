@@ -2,7 +2,7 @@ import React, { useEffect } from "react";
 import styled from "styled-components";
 
 //IMPORTED COMPONENTS
-import { CurrentUserContext } from "./CurrentUserContext";
+import { CurrentUserContext, CurrentUserProvider } from "./CurrentUserContext";
 import Feed from "./Feed";
 import Load from "./Load";
 import Submit from "./Submit";
@@ -10,7 +10,7 @@ import TextBox from "./TextBox";
 
 const HomePage = () => {
   const { currentUser } = React.useContext(CurrentUserContext);
-  const [tweetFeed, setTweetFeed] = React.useState(null);
+  const { tweetFeed, setTweetFeed } = React.useContext(CurrentUserContext);
 
   useEffect(() => {
     fetch("/api/me/home-feed")

@@ -1,19 +1,51 @@
-import React from "react";
+import React, { useEffect } from "react";
 import styled from "styled-components";
 
 //IMPORTED COMPONENTS
 import { COLORS } from "../constants";
 import { CurrentUserContext } from "./CurrentUserContext";
-import { handleOnSubmit } from "../handlers";
 
 const { primary } = COLORS;
 
 const Submit = () => {
-  const { textValue, numLettersLeft } = React.useContext(CurrentUserContext);
+  const {
+    textValue,
+    numLettersLeft,
+    setTweetFeed,
+    TweetFeed,
+  } = React.useContext(CurrentUserContext);
+
+  const handleAfterPublishTweet = () => {
+    fetch("/api/me/home-feed")
+      .then((response) => response.json())
+      .then((data) => {
+        //return an array with the tweets in the right order using tweetIds' array
+        return data.tweetIds.map((tweetId) => {
+          return data.tweetsById[`${tweetId}`];
+        });
+      })
+      .then((answer) => {
+        console.log(answer);
+        setTweetFeed(answer);
+      });
+  };
+
+  const handleOnSubmit = () => {
+    fetch("/api/tweet", {
+      method: "POST",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ status: textValue }),
+    })
+      .then((response) => response.json())
+      .then((data) => {
+        handleAfterPublishTweet();
+      });
+  };
+
   return (
     <Button
       onClick={() => {
-        handleOnSubmit(textValue);
+        handleOnSubmit();
       }}
       disabled={numLettersLeft > 0 ? false : true}
     >

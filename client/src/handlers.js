@@ -1,3 +1,4 @@
+//Handler for when user submits a tweet
 export const handleOnSubmit = (textValue) => {
   fetch("/api/tweet", {
     method: "POST",
