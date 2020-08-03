@@ -1,6 +1,6 @@
 import React from "react";
 import dateFormat from "dateformat";
-import { useHistory } from "react-router-dom";
+import { useHistory, Link } from "react-router-dom";
 
 import TweetActions from "../TweetActions";
 import { Tweet, TweetInfo, Avatar, Status, Media, Clickable } from "../Feed";
@@ -26,9 +26,14 @@ const CurrentUserFeed = ({ userFeed }) => {
             <Avatar src={tweet.author.avatarSrc} />
             <TweetInfo>
               <span>
-                <a href={`/${tweet.author.handle}`}>
+                <Link
+                  onClick={(event) => {
+                    event.stopPropagation();
+                  }}
+                  to={`/${tweet.author.handle}`}
+                >
                   {tweet.author.displayName}
-                </a>
+                </Link>
               </span>
               <span>@{tweet.author.handle}</span>
               <span>{dateFormat(tweet.timestamp, "mmm dd")}</span>

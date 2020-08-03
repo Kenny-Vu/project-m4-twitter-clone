@@ -1,14 +1,14 @@
 import React, { useEffect } from "react";
 import styled from "styled-components";
 
+//IMPORTED COMPONENTS
 import { CurrentUserContext } from "./CurrentUserContext";
 import Feed from "./Feed";
-import { COLORS } from "../constants";
 import Load from "./Load";
+import Submit from "./Submit";
+import TextBox from "./TextBox";
 
-const { primary } = COLORS;
-
-const HomeFeed = () => {
+const HomePage = () => {
   const { currentUser } = React.useContext(CurrentUserContext);
   const [tweetFeed, setTweetFeed] = React.useState(null);
 
@@ -32,9 +32,9 @@ const HomeFeed = () => {
       <UserPost>
         <Divider>
           <AvatarImg src={currentUser.avatarSrc} alt={currentUser.handle} />
-          <textarea placeholder="What's happening?"></textarea>
+          <TextBox placeholder="What's happening?" />
         </Divider>
-        <button>Quack!</button>
+        <Submit>Quack!</Submit>
       </UserPost>
       {tweetFeed ? <Feed tweetFeed={tweetFeed} /> : <Load />}
     </Wrapper>
@@ -62,29 +62,6 @@ const UserPost = styled.div`
   justify-content: space-evenly;
   height: 400px;
   border-bottom: thin grey solid;
-  textarea {
-    height: 300px;
-    width: 100%;
-    resize: none;
-    font-size: 1.5rem;
-    padding: 0.5rem;
-    border: none;
-  }
-  textarea:focus {
-    outline: none;
-  }
-  button {
-    align-self: flex-end;
-    border: none;
-    padding: 0.5rem;
-    width: 100px;
-    height: 50px;
-    font-size: 1.25rem;
-    cursor: pointer;
-    color: #fff;
-    background-color: ${primary};
-    border-radius: 18px;
-  }
 `;
 const Divider = styled.div`
   display: flex;
@@ -97,4 +74,4 @@ export const AvatarImg = styled.img`
   border-radius: 50%;
 `;
 
-export default HomeFeed;
+export default HomePage;

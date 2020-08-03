@@ -5,7 +5,7 @@ import styled from "styled-components";
 
 import Sidebar from "./components/Sidebar";
 import Profile from "./components/Profile/Profile";
-import HomeFeed from "./components/HomeFeed";
+import HomePage from "./components/HomePage";
 import Notifications from "./components/Notifications";
 import Bookmarks from "./components/Bookmarks";
 import BigTweet from "./components/BigTweet";
@@ -26,7 +26,7 @@ function App() {
           <Main>
             {status === "idle" ? (
               <Switch>
-                <Route exact path="/" component={HomeFeed} />
+                <Route exact path="/" component={HomePage} />
                 <Route path="/notifications" component={Notifications} />
                 <Route path="/bookmarks" component={Bookmarks} />
                 <Route path="/tweet/:tweetId" component={BigTweet} />
