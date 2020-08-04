@@ -20,7 +20,8 @@ export const CurrentUserProvider = ({ children }) => {
       .then((data) => {
         setCurrentUser(data.profile);
         data.profile ? setStatus("idle") : setStatus("loading");
-      });
+      })
+      .catch((err) => setStatus("error"));
   }, []);
 
   return (

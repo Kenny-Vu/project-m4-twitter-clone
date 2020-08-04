@@ -7,10 +7,12 @@ import Feed from "./Feed";
 import Load from "./Load";
 import Submit from "./Submit";
 import TextBox from "./TextBox";
+import ErrorScreen from "./ErrorScreen";
 
 const HomePage = () => {
   const { currentUser } = React.useContext(CurrentUserContext);
   const { tweetFeed, setTweetFeed } = React.useContext(CurrentUserContext);
+  const [homeFeedStatus, setHomeFeedStatus] = React.useState("loading"); //state used render error screen if needed
 
   useEffect(() => {
     fetch("/api/me/home-feed")
@@ -23,7 +25,9 @@ const HomePage = () => {
       })
       .then((answer) => {
         setTweetFeed(answer);
-      });
+        setHomeFeedStatus("Idle");
+      })
+      .catch((err) => setHomeFeedStatus("error"));
   }, []);
 
   return (
@@ -36,7 +40,9 @@ const HomePage = () => {
         </Divider>
         <Submit>Quack!</Submit>
       </UserPost>
-      {tweetFeed ? <Feed tweetFeed={tweetFeed} /> : <Load />}
+      {homeFeedStatus === "loading" && <Load />}
+      {homeFeedStatus === "error" && <ErrorScreen />}
+      {tweetFeed && <Feed tweetFeed={tweetFeed} />}
     </Wrapper>
   );
 };

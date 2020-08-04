@@ -8,6 +8,7 @@ import { COLORS } from "../../constants";
 import Load from "../Load";
 import CurrentUserFeed from "./CurrentUserFeed";
 import UserInfo from "./UserInfo";
+import ErrorScreen from "../ErrorScreen";
 
 const { primary } = COLORS;
 
@@ -15,6 +16,7 @@ const Profile = () => {
   //STATES
   const [userProfile, setUserProfile] = useState(null);
   const [userFeed, setUserFeed] = useState(null);
+  const [profilePageStatus, setProfilePageStatus] = useState("loading");
   ///
   const { profileId } = useParams(); //storing the user handle from URL params
 
@@ -33,7 +35,11 @@ const Profile = () => {
           return data.tweetsById[`${tweetId}`];
         });
       })
-      .then((feedback) => setUserFeed(feedback));
+      .then((feedback) => {
+        setUserFeed(feedback);
+        setProfilePageStatus("idle");
+      })
+      .then((err) => setProfilePageStatus("error"));
   }, []);
 
   return userProfile ? (
@@ -50,8 +56,9 @@ const Profile = () => {
         </AvatarWrapper>
         <UserInfo userProfile={userProfile} />
       </div>
-      {/* Passign the userFeed state as prop only once it isn't null */}
-      {userFeed ? <CurrentUserFeed userFeed={userFeed} /> : <Load />}
+      {profilePageStatus === "loading" && <Load />}
+      {profilePageStatus === "idle" && <CurrentUserFeed userFeed={userFeed} />}
+      {profilePageStatus === "error" && <ErrorScreen />}
     </Wrapper>
   ) : (
     <Load />

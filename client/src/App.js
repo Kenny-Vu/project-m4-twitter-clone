@@ -3,13 +3,14 @@ import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import "./App.css";
 import styled from "styled-components";
 
+//IMPORTED COMPONENTS
 import Sidebar from "./components/Sidebar";
 import Profile from "./components/Profile/Profile";
 import HomePage from "./components/HomePage";
 import Notifications from "./components/Notifications";
 import Bookmarks from "./components/Bookmarks";
 import BigTweet from "./components/BigTweet";
-
+import ErrorScreen from "./components/ErrorScreen";
 import GlobalStyle from "./GlobalStyles";
 
 import { CurrentUserContext } from "./components/CurrentUserContext";
@@ -24,7 +25,7 @@ function App() {
         <Wrapper>
           {status === "idle" && <Sidebar />}
           <Main>
-            {status === "idle" ? (
+            {status === "idle" && (
               <Switch>
                 <Route exact path="/" component={HomePage} />
                 <Route path="/notifications" component={Notifications} />
@@ -32,9 +33,9 @@ function App() {
                 <Route path="/tweet/:tweetId" component={BigTweet} />
                 <Route path="/:profileId" component={Profile} />
               </Switch>
-            ) : (
-              <Load />
             )}
+            {status === "loading" && <Load />}
+            {status === "error" && <ErrorScreen />}
           </Main>
         </Wrapper>
       </Router>

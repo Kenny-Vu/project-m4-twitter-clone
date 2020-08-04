@@ -20,7 +20,6 @@ const Feed = ({ tweetFeed }) => {
   return tweetFeed.map((tweet) => {
     return (
       <>
-        <RetweetBanner tweet={tweet} />
         <Tweet key={tweet.id}>
           <Clickable
             aria-label="view-tweet"
@@ -28,6 +27,7 @@ const Feed = ({ tweetFeed }) => {
             onClick={() => handleGoToTweet(tweet.id)}
             onKeyPress={(e) => e.key === "Enter" && handleGoToTweet(tweet.id)}
           >
+            <RetweetBanner tweet={tweet} />
             <Avatar
               src={
                 tweet.retweetFrom
@@ -41,7 +41,11 @@ const Feed = ({ tweetFeed }) => {
                   onClick={(event) => {
                     event.stopPropagation();
                   }}
-                  to={`/${tweet.author.handle}`}
+                  to={
+                    tweet.retweetFrom
+                      ? `/${tweet.retweetFrom.handle}`
+                      : `/${tweet.author.handle}`
+                  }
                 >
                   {tweet.retweetFrom
                     ? tweet.retweetFrom.displayName

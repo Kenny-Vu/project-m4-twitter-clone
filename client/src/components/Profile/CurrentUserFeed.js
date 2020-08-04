@@ -19,13 +19,13 @@ const CurrentUserFeed = ({ userFeed }) => {
   return userFeed.map((tweet) => {
     return (
       <>
-        <RetweetBanner tweet={tweet} />
         <Tweet key={tweet.id}>
           <Clickable
             aria-label="view-tweet"
             tabIndex="0"
             onClick={() => handleGoToTweet(tweet.id)}
           >
+            <RetweetBanner tweet={tweet} />
             <Avatar
               src={
                 tweet.retweetFrom
@@ -35,16 +35,9 @@ const CurrentUserFeed = ({ userFeed }) => {
             />
             <TweetInfo>
               <span>
-                <Link
-                  onClick={(event) => {
-                    event.stopPropagation();
-                  }}
-                  to={`/${tweet.author.handle}`}
-                >
-                  {tweet.retweetFrom
-                    ? tweet.retweetFrom.displayName
-                    : tweet.author.displayName}
-                </Link>
+                {tweet.retweetFrom
+                  ? tweet.retweetFrom.displayName
+                  : tweet.author.displayName}
               </span>
               <span>@{tweet.author.handle}</span>
               <span>{dateFormat(tweet.timestamp, "mmm dd")}</span>
