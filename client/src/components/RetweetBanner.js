@@ -3,7 +3,6 @@ import React from "react";
 import { FaRetweet } from "react-icons/fa";
 
 const RetweetBanner = ({ tweet }) => {
-  console.log(tweet.retweetFrom);
   return (
     <>
       {tweet.retweetFrom && (

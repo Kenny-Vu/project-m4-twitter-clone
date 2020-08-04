@@ -7,13 +7,10 @@ import { CurrentUserContext } from "./CurrentUserContext";
 
 const { primary } = COLORS;
 
-const Submit = () => {
-  const {
-    textValue,
-    numLettersLeft,
-    setTweetFeed,
-    TweetFeed,
-  } = React.useContext(CurrentUserContext);
+const Submit = ({ setHomeFeedStatus, setSubmitTweetStatus }) => {
+  const { textValue, numLettersLeft, setTweetFeed } = React.useContext(
+    CurrentUserContext
+  );
 
   //Function to refetch home feed
   const handleAfterPublishTweet = () => {
@@ -26,7 +23,11 @@ const Submit = () => {
         });
       })
       .then((answer) => {
+        setHomeFeedStatus("idle");
         setTweetFeed(answer);
+      })
+      .catch((err) => {
+        setHomeFeedStatus("error");
       });
   };
 
@@ -38,7 +39,11 @@ const Submit = () => {
     })
       .then((response) => response.json())
       .then((data) => {
+        setSubmitTweetStatus("ok");
         handleAfterPublishTweet(); //this rerenders the home feed but the loading animation doesn't appear
+      })
+      .catch((err) => {
+        setSubmitTweetStatus("error");
       });
   };
 

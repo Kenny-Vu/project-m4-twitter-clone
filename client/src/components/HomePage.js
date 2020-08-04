@@ -10,10 +10,14 @@ import TextBox from "./TextBox";
 import ErrorScreen from "./ErrorScreen";
 
 const HomePage = () => {
-  const { currentUser } = React.useContext(CurrentUserContext);
-  const { tweetFeed, setTweetFeed } = React.useContext(CurrentUserContext);
+  const {
+    currentUser,
+    tweetFeed,
+    setTweetFeed,
+    numLettersLeft,
+  } = React.useContext(CurrentUserContext);
   const [homeFeedStatus, setHomeFeedStatus] = React.useState("loading"); //state used render error screen if needed
-
+  const [submitTweetStatus, setSubmitTweetStatus] = React.useState("ok");
   useEffect(() => {
     fetch("/api/me/home-feed")
       .then((response) => response.json())
@@ -38,7 +42,20 @@ const HomePage = () => {
           <AvatarImg src={currentUser.avatarSrc} alt={currentUser.handle} />
           <TextBox placeholder="What's happening?" />
         </Divider>
-        <Submit>Quack!</Submit>
+        <UnderTextBox>
+          {submitTweetStatus === "error" && (
+            <ErrorMsg>Sorry, your Quack couldn't be posted...</ErrorMsg>
+          )}
+          <div>
+            <span>{numLettersLeft}</span>
+            <Submit
+              setHomeFeedStatus={setHomeFeedStatus}
+              setSubmitTweetStatus={setSubmitTweetStatus}
+            >
+              Quack!
+            </Submit>
+          </div>
+        </UnderTextBox>
       </UserPost>
       {homeFeedStatus === "loading" && <Load />}
       {homeFeedStatus === "error" && <ErrorScreen />}
@@ -72,6 +89,24 @@ const UserPost = styled.div`
 const Divider = styled.div`
   display: flex;
   margin-right: 0.5rem;
+`;
+const UnderTextBox = styled.div`
+  border: solid;
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+  padding: 0 0.5rem;
+  font-size: 1.25rem;
+  div {
+    width: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+`;
+const ErrorMsg = styled.span`
+  color: red;
+  margin: 0 1rem;
 `;
 
 export const AvatarImg = styled.img`

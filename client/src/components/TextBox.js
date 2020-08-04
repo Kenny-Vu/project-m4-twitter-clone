@@ -43,7 +43,6 @@ const TextBox = () => {
         }}
         style={{ color: textColor }}
       ></StyledTextBox>
-      <div>{numLettersLeft}</div>
     </>
   );
 };
