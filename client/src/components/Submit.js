@@ -15,6 +15,7 @@ const Submit = () => {
     TweetFeed,
   } = React.useContext(CurrentUserContext);
 
+  //Function to refetch home feed
   const handleAfterPublishTweet = () => {
     fetch("/api/me/home-feed")
       .then((response) => response.json())
@@ -25,7 +26,6 @@ const Submit = () => {
         });
       })
       .then((answer) => {
-        console.log(answer);
         setTweetFeed(answer);
       });
   };
@@ -38,7 +38,7 @@ const Submit = () => {
     })
       .then((response) => response.json())
       .then((data) => {
-        handleAfterPublishTweet();
+        handleAfterPublishTweet(); //this rerenders the home feed but the loading animation doesn't appear
       });
   };
 
@@ -47,7 +47,7 @@ const Submit = () => {
       onClick={() => {
         handleOnSubmit();
       }}
-      disabled={numLettersLeft > 0 ? false : true}
+      disabled={numLettersLeft > 0 ? false : true} //disables button if user exceeds letter count
     >
       Quack!
     </Button>

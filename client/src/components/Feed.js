@@ -5,6 +5,7 @@ import { useHistory, Link } from "react-router-dom";
 
 //IMPORTED COMPONENTS
 import TweetActions from "./TweetActions";
+import RetweetBanner from "./RetweetBanner";
 
 //renders all tweets on the home page
 const Feed = ({ tweetFeed }) => {
@@ -19,6 +20,7 @@ const Feed = ({ tweetFeed }) => {
   return tweetFeed.map((tweet) => {
     return (
       <>
+        <RetweetBanner tweet={tweet} />
         <Tweet key={tweet.id}>
           <Clickable
             aria-label="view-tweet"
@@ -26,7 +28,13 @@ const Feed = ({ tweetFeed }) => {
             onClick={() => handleGoToTweet(tweet.id)}
             onKeyPress={(e) => e.key === "Enter" && handleGoToTweet(tweet.id)}
           >
-            <Avatar src={tweet.author.avatarSrc} />
+            <Avatar
+              src={
+                tweet.retweetFrom
+                  ? tweet.retweetFrom.avatarSrc
+                  : tweet.author.avatarSrc
+              }
+            />
             <TweetInfo>
               <span>
                 <Link
@@ -35,7 +43,9 @@ const Feed = ({ tweetFeed }) => {
                   }}
                   to={`/${tweet.author.handle}`}
                 >
-                  {tweet.author.displayName}
+                  {tweet.retweetFrom
+                    ? tweet.retweetFrom.displayName
+                    : tweet.author.displayName}
                 </Link>
               </span>
               <span>@{tweet.author.handle}</span>
