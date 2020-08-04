@@ -91,7 +91,6 @@ const Divider = styled.div`
   margin-right: 0.5rem;
 `;
 const UnderTextBox = styled.div`
-  border: solid;
   display: flex;
   align-items: center;
   justify-content: flex-end;
