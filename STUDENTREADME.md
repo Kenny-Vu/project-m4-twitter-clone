@@ -15,7 +15,7 @@ Hi, here's my submission for the React project. Here are some useful infos to na
 
 - Tweet Components
 - Click targets
-- Retweets
+- Retweets show who it was retweeted from.
 - Character limit
 - Error screens
 - Loading states
@@ -26,7 +26,7 @@ Hi, here's my submission for the React project. Here are some useful infos to na
 
 - I took the liberty of changing all cats to ducks because ducks are cuter.
 - I changed display names and statuses in the server/data.js file
-- The users' handles were not modified since the initial code for the server uses them so one duck will have the handle name of "giantcat9".
+- The users' handles were not modified since the initial code for the server uses them so one duck will unfortunately have the handle name of "giantcat9".
 
 ### Things I will try to improve before the project is graded:
 
