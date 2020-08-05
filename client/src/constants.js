@@ -1,6 +1,6 @@
 export const COLORS = {
   //Cartoon ish duck pond blue:
-  primary: "hsl(258deg, 100%, 50%)",
-  secondary: "rgba(198, 166, 247, 0.2 )",
+  primary: "orange",
+  secondary: "#F6EEC4",
   borderColor: "#d3d3d3",
 };

@@ -1,5 +1,5 @@
 import React from "react";
-import styled from "styled-components";
+import styled, { keyframes } from "styled-components";
 import { FiShare2, FiHeart, FiMessageCircle } from "react-icons/fi";
 import { FaRetweet } from "react-icons/fa";
 
@@ -46,9 +46,9 @@ const TweetActions = ({ tweetId, isLiked, numLikes }) => {
       </div>
       <div>
         <Action onClick={handleLike}>
-          <FiHeart />
+          <FiHeart style={{ fill: `${tweetLiked ? "red" : ""}` }} />
         </Action>
-        <span>{numOfLikes}</span>
+        <NumLikes>{numOfLikes}</NumLikes>
       </div>
       <div>
         <Action>
@@ -63,14 +63,42 @@ const Bar = styled.div`
   display: flex;
   justify-content: space-evenly;
   border-bottom: thin solid #d3d3d3;
+  div {
+    display: flex;
+    align-items: center;
+  }
 `;
 
 const Action = styled.button`
+  height: 80px;
+  width: 80px;
   border: none;
   background-color: #fff;
   padding: 0.25rem;
   font-size: 2rem;
+  border-radius: 50%;
   cursor: pointer;
+  transition-duration: 200ms;
+  &&:focus {
+    outline: none;
+    transform: scale(1.05);
+    background-color: #ad8aad;
+    opacity: 0.3;
+  }
+  &&:focus > svg {
+    color: white;
+  }
+  &&:hover {
+    transform: scale(1.05);
+    background-color: #ad8aad;
+    opacity: 0.3;
+  }
+  &&:hover > svg {
+    color: white;
+  }
+`;
+const NumLikes = styled.span`
+  font-size: 1.25rem;
 `;
 
 export default TweetActions;

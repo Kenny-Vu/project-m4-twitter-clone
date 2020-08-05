@@ -7,9 +7,9 @@ import dateFormat from "dateformat";
 
 //IMPORTED COMPONENTS
 import TweetActions from "./TweetActions";
-import { Tweet, Avatar, Status, Media } from "./Feed";
-import Load from "./Load";
-import ErrorScreen from "./ErrorScreen";
+import { Tweet, Avatar, Status, Media } from "../HomeFeed";
+import Load from "../Load";
+import ErrorScreen from "../ErrorScreen";
 
 const BigTweet = () => {
   const tweetId = useParams().tweetId; //storing the tweetId from the url params

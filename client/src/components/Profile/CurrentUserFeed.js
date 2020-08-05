@@ -1,10 +1,17 @@
 import React from "react";
 import dateFormat from "dateformat";
-import { useHistory, Link } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 //IMPORTED COMPONENTS
-import TweetActions from "../TweetActions";
-import { Tweet, TweetInfo, Avatar, Status, Media, Clickable } from "../Feed";
+import TweetActions from "../Tweet/TweetActions";
+import {
+  Tweet,
+  TweetInfo,
+  Avatar,
+  Status,
+  Media,
+  Clickable,
+} from "../HomeFeed";
 import RetweetBanner from "../RetweetBanner";
 
 const CurrentUserFeed = ({ userFeed }) => {
@@ -45,7 +52,6 @@ const CurrentUserFeed = ({ userFeed }) => {
             <Status>{tweet.status}</Status>
           </Clickable>
           {tweet.media[0] && <Media src={tweet.media[0].url} />}
-          <TweetActions tweetId={tweet.id} isLiked={tweet.isLiked} />
         </Tweet>
       </>
     );

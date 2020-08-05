@@ -3,7 +3,7 @@ import styled from "styled-components";
 
 //IMPORTED COMPONENTS
 import { CurrentUserContext, CurrentUserProvider } from "./CurrentUserContext";
-import Feed from "./Feed";
+import HomeFeed from "./HomeFeed";
 import Load from "./Load";
 import Submit from "./Submit";
 import TextBox from "./TextBox";
@@ -59,7 +59,7 @@ const HomePage = () => {
       </UserPost>
       {homeFeedStatus === "loading" && <Load />}
       {homeFeedStatus === "error" && <ErrorScreen />}
-      {tweetFeed && <Feed tweetFeed={tweetFeed} />}
+      {tweetFeed && <HomeFeed tweetFeed={tweetFeed} />}
     </Wrapper>
   );
 };

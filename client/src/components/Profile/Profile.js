@@ -39,7 +39,7 @@ const Profile = () => {
         setUserFeed(feedback);
         setProfilePageStatus("idle");
       })
-      .then((err) => setProfilePageStatus("error"));
+      .catch((err) => setProfilePageStatus("error"));
   }, []);
 
   return userProfile ? (

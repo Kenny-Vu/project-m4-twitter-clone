@@ -4,11 +4,11 @@ import styled from "styled-components";
 import { useHistory, Link } from "react-router-dom";
 
 //IMPORTED COMPONENTS
-import TweetActions from "./TweetActions";
+import TweetActions from "./Tweet/TweetActions";
 import RetweetBanner from "./RetweetBanner";
 
 //renders all tweets on the home page
-const Feed = ({ tweetFeed }) => {
+const HomeFeed = ({ tweetFeed }) => {
   const history = useHistory();
 
   //function to send user to specific tweet page
@@ -113,4 +113,4 @@ export const Media = styled.img`
   border-radius: 12px;
   object-fit: cover;
 `;
-export default Feed;
+export default HomeFeed;

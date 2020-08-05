@@ -7,9 +7,9 @@ import styled from "styled-components";
 import Sidebar from "./components/Sidebar";
 import Profile from "./components/Profile/Profile";
 import HomePage from "./components/HomePage";
-import Notifications from "./components/Notifications";
-import Bookmarks from "./components/Bookmarks";
-import BigTweet from "./components/BigTweet";
+import Notifications from "./components/Unrequired/Notifications";
+import Bookmarks from "./components/Unrequired/Bookmarks";
+import BigTweet from "./components/Tweet/BigTweet";
 import ErrorScreen from "./components/ErrorScreen";
 import GlobalStyle from "./GlobalStyles";
 
